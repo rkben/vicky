@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "vicky"
+version = "0.1.0"
+description = "a irc bot"
+authors = ["Richard Benson <richard@rkben.dev>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+httpx = "^0.24.1"
+loguru = "^0.7.0"
+tortoise-orm = {extras = ["accel", "aiosqlite"], version = "^0.20.0"}
+aerich = "^0.7.2"
+pydantic-settings = "^2.0.3"
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.12.0"
+mypy = "^1.5.1"
+black = "^23.7.0"
+pytest = "^7.4.0"
+ruff = "^0.0.286"
+pre-commit = "^3.3.3"
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+include = '\.pyi?$'
+exclude-extend = '''
+/venv
+/.venv
+/__pycache__
+/.mypy_cache
+/.pytest_cache
+/db.sqlite3
+/alembic
+/dev
+'''
+
+[tool.ruff]
+line-length = 120
+select = ["E", "F", "UP", "I"]
+ignore = ["E501"]
+fixable = ["A", "B", "C", "D", "E", "F", "I"]
+exclude = [
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".mypy_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "migrations",
+    "__pypackages__",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "alembic",
+    "dev"
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
